@@ -535,12 +535,10 @@ class _PlayState extends State<Play> {
           setState(() {
             _count--;
             // 1秒間隔で_countから１を引く（３→２→１　＝　カウントダウン）
-            // 非同期（※）
           });
         });
         Future.delayed(const Duration(seconds: 3), () {
           // 3秒の後に下記のことを実行する
-          // 非同期(※)
           setState(() {
             tmp.cancel();
             // 上記のtmp　Timerをキャンセルさせる（キャンセルしないと無限に_count--をするため）
