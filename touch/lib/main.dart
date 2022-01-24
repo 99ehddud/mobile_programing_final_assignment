@@ -19,7 +19,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   String _information = "白いボタンを押すだけ！";
-  // 画面の中央に書かれる説明文句
+  // 画面の中央に書かれる説明
   int _currentLevel = 0;
   // 選択された難易度
   bool _visibility = false;
@@ -242,7 +242,7 @@ class _HomeState extends State<Home> {
         _currentLevel = 0;
         // 選択された難易度を初期化する
         _information = "白いボタンを押すだけ！";
-        // 説明文句を初期化する
+        // 説明を初期化する
       } else {
         if (!_visibility) _visibility = true;
         // READYボタンが見えないのであれば見えるようにする
