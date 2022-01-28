@@ -23,7 +23,7 @@ class _PlayState extends State<Play> {
   // 最初回であるか否かを判定
   bool _isPlaying = false;
   // ゲーム中であるか否かを判定
-  bool _touchIsPossible = false;
+  bool _isTouchPossible = false;
   // タッチができる状態か否かを判定
   bool _isCountdownStart = false;
   // カウントダウン中であるか否かを判定
@@ -403,23 +403,23 @@ class _PlayState extends State<Play> {
                   height: 100,
                   child: Text(
                     _isFirst
-                    // 最初回->① / 最初回X->②
+                        // 最初回->① / 最初回X->②
                         ? "READY"
                         // ①　READYを表示
                         : _isCountdownStart
-                        // ②　カウントダウン中->③ / カウントダウンX->④
+                            // ②　カウントダウン中->③ / カウントダウンX->④
                             ? _count.toString()
                             // ③　_countを表示（３、２、１）
                             : _isPlaying
-                            // ④　ゲーム中->⑤ / ゲーム中X->⑥
+                                // ④　ゲーム中->⑤ / ゲーム中X->⑥
                                 ? _score == 0
-                                // ⑤　結果が0->⑦ / 結果が0ではない->⑧
+                                    // ⑤　結果が0->⑦ / 結果が0ではない->⑧
                                     ? "START"
                                     // ⑦　カウントダウンが終わり、ゲームが始まったことを知らせる
                                     : "Score : ${_score.toString()}"
-                                    // ⑧　ゲーム中であり、現在の結果を知らせる
+                                // ⑧　ゲーム中であり、現在の結果を知らせる
                                 : "FINISH",
-                                // ⑥　ゲームが終わったことを知らせる
+                    // ⑥　ゲームが終わったことを知らせる
                     style: const TextStyle(
                       fontSize: 30,
                       color: Colors.white,
@@ -559,7 +559,7 @@ class _PlayState extends State<Play> {
       // 選択された難易度によって事前に設定された時間を制限時間とするTimerを起動させる
       _pickButton();
       // 白いボタンの選択
-      _touchIsPossible = true;
+      _isTouchPossible = true;
       // タッチできるようにする
       // 白いボタンの選択の前にタッチすることでゲームが終わってしまうことを防止
     });
@@ -568,7 +568,7 @@ class _PlayState extends State<Play> {
   void _push(int num) {
     // 「白いボタンを押す」の処理
     setState(() {
-      if (_touchIsPossible) {
+      if (_isTouchPossible) {
         // タッチできる状態であれば
         if (_whichButton != num) {
           // 「白いボタン」と押したボタンが異なる場合
@@ -603,7 +603,7 @@ class _PlayState extends State<Play> {
     setState(() {
       _timerCancel();
       // Timerをキャンセルさせる
-      _touchIsPossible = false;
+      _isTouchPossible = false;
       // タッチできない状態にする
       _score++;
       // 結果(_score)に１を足す
@@ -638,7 +638,7 @@ class _PlayState extends State<Play> {
   void _finishGame() {
     // ゲームを終了させる
     setState(() {
-      _touchIsPossible = false;
+      _isTouchPossible = false;
       // タッチできない状態にする
       _checkYourStatus();
       // 結果に対する評価を行う
